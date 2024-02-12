@@ -1,7 +1,6 @@
 package com.perinity.tasklist.modules.pessoa.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.perinity.tasklist.modules.departamento.entities.DepartamentoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
