@@ -34,17 +34,17 @@ public class TarefaEntity {
 
     private boolean finalizado;
 
-    @Column(name = "idDepartamento")
+    @Column(name = "id_departamento")
     private int idDepartamento;
 
     @ManyToOne
-    @JoinColumn(name = "idDepartamento", insertable=false, updatable=false)
+    @JoinColumn(name = "id_departamento", insertable=false, updatable=false)
     private DepartamentoEntity departamento;
 
-    @Column(name = "idPessoa")
+    @Column(name = "id_pessoa")
     private int idPessoa;
 
     @ManyToOne
-    @JoinColumn(name = "idPessoa", insertable=false, updatable=false)
+    @JoinColumn(name = "id_pessoa", insertable=false, updatable=false)
     private PessoaEntity pessoa;
 }

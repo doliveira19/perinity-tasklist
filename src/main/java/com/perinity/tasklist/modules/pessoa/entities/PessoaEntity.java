@@ -1,5 +1,7 @@
 package com.perinity.tasklist.modules.pessoa.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.perinity.tasklist.modules.departamento.entities.DepartamentoEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,10 +23,11 @@ public class PessoaEntity {
     @Column(length = 100)
     private String nome;
 
-    @Column(name = "idDepartamento")
+    @Column(name = "id_departamento")
     private int idDepartamento;
 
     @ManyToOne
-    @JoinColumn(name = "idDepartamento", insertable=false, updatable=false)
+    @JoinColumn(name = "id_departamento", insertable=false, updatable=false)
+    @JsonBackReference
     private DepartamentoEntity departamento;
 }
