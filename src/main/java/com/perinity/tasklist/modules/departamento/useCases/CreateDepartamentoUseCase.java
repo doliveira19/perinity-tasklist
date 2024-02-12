@@ -11,7 +11,13 @@ public class CreateDepartamentoUseCase {
     @Autowired
     private DepartamentoRepository departamentoRepository;
 
-    public DepartamentoEntity execute(CreateDepartmentDTO dto) {
+    public DepartamentoEntity execute(CreateDepartmentDTO dto) throws Exception {
+
+        var departamentos = this.departamentoRepository.findByTitulo(dto.getTitulo());
+
+        if (!departamentos.isEmpty()) {
+            throw new Exception("Já existe um Departamento com esse nome");
+        }
 
         var departamentoCreated = DepartamentoEntity.builder()
                 .titulo(dto.getTitulo())
