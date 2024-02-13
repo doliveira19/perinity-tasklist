@@ -1,12 +1,16 @@
 package com.perinity.tasklist.modules.pessoa.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.perinity.tasklist.modules.departamento.entities.DepartamentoEntity;
+import com.perinity.tasklist.modules.tarefas.entites.TarefaEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,4 +33,8 @@ public class PessoaEntity {
     @JoinColumn(name = "id_departamento", insertable=false, updatable=false)
     @JsonBackReference
     private DepartamentoEntity departamento;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<TarefaEntity> tarefas;
 }

@@ -1,5 +1,6 @@
 package com.perinity.tasklist.modules.tarefas.entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.perinity.tasklist.modules.departamento.entities.DepartamentoEntity;
 import com.perinity.tasklist.modules.pessoa.entities.PessoaEntity;
 import jakarta.persistence.*;
@@ -39,6 +40,7 @@ public class TarefaEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_departamento", insertable=false, updatable=false)
+    @JsonBackReference
     private DepartamentoEntity departamento;
 
     @Column(name = "id_pessoa")
@@ -46,5 +48,6 @@ public class TarefaEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_pessoa", insertable=false, updatable=false)
+    @JsonBackReference
     private PessoaEntity pessoa;
 }

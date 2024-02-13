@@ -2,6 +2,7 @@ package com.perinity.tasklist.modules.departamento.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.perinity.tasklist.modules.pessoa.entities.PessoaEntity;
+import com.perinity.tasklist.modules.tarefas.entites.TarefaEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +28,8 @@ public class DepartamentoEntity {
     @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<PessoaEntity> pessoas;
+
+    @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<TarefaEntity> tarefas;
 }
