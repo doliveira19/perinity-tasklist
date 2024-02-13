@@ -16,8 +16,8 @@ public class DeletePessoaUseCase {
         Optional<PessoaEntity> pessoa = pessoaRepository.findById(id);
         if (!pessoa.isEmpty()) {
             this.pessoaRepository.deleteById(id);
-            return String.format("Pessoa com ID %d deletada", id);
+            return "Pessoa com ID {id} deletada";
         }
-        throw new Exception(String.format("Pessoa com ID %d não encontrada", id));
+        throw new Exception("Pessoa com ID {id} não encontrada");
     }
 }

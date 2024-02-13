@@ -22,14 +22,19 @@ public class PessoaController {
     private UpdatePessoaUseCase updatePessoaUseCase;
 
     @PostMapping
-    private PessoaEntity createPessoa(@RequestBody CreatePessoaDTO dto) throws Exception {
-        return this.createPessoaUseCase.execute(dto);
+    private ResponseEntity<Object> createPessoa(@RequestBody CreatePessoaDTO dto) throws Exception {
+        try {
+            var result = this.createPessoaUseCase.execute(dto);
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")
     private ResponseEntity<Object> updatePessoa(@PathVariable int id, @RequestBody CreatePessoaDTO dto) throws Exception {
         try {
-            var result =  this.updatePessoaUseCase.execute(id, dto);
+            var result = this.updatePessoaUseCase.execute(id, dto);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
