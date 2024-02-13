@@ -26,7 +26,7 @@ public class AllocatePessoaToTarefaUseCase {
         var tarefa = this.tarefaRepository.findById(id);
 
         if (tarefa.isEmpty()) {
-            throw new Exception("Tarefa com ID {id} não encontrada");
+            throw new Exception(String.format("Tarefa com ID {%d} não encontrada", id));
         }
 
         if (dto.getIdPessoa() == 0) {

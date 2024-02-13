@@ -1,6 +1,7 @@
 package com.perinity.tasklist.modules.departamento.controllers;
 
 import com.perinity.tasklist.modules.departamento.dto.CreateDepartmentDTO;
+import com.perinity.tasklist.modules.departamento.dto.DepartamentoWithQtdePessoasAndTarefasDTO;
 import com.perinity.tasklist.modules.departamento.entities.DepartamentoEntity;
 import com.perinity.tasklist.modules.departamento.repositories.DepartamentoRepository;
 import com.perinity.tasklist.modules.departamento.useCases.CreateDepartamentoUseCase;
@@ -26,7 +27,7 @@ public class DepartamentoController {
         return this.departamentoRepository.findById(id);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     private List<DepartamentoEntity> getAllDepartamentos() {
         return this.departamentoRepository.findAll();
     }
@@ -39,6 +40,11 @@ public class DepartamentoController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping
+    public List<DepartamentoWithQtdePessoasAndTarefasDTO> findDepartamentoWithQtdePessoasAndTarefas() {
+        return departamentoRepository.findDepartamentoWithQtdePessoasAndTarefas();
     }
 
 }

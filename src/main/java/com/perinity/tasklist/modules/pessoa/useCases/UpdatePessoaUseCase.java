@@ -21,7 +21,7 @@ public class UpdatePessoaUseCase {
         Optional<PessoaEntity> pessoa = pessoaRepository.findById(id);
 
         if (pessoa.isEmpty()) {
-            throw new Exception("Pessoa com ID {id} não encontrada");
+            throw new Exception(String.format("Pessoa com ID {%d} não encontrada", id));
         }
 
         PessoaEntity updatedPessoa = pessoa.get();
