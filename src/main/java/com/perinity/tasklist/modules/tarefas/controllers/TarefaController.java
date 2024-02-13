@@ -69,4 +69,12 @@ public class TarefaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
+
+
+    @GetMapping("/pendentes")
+    private List<TarefaEntity> findTop3TarefasWithoutPessoa() {
+        return this.tarefaRepository.findTop3TarefasWithoutPessoa();
+    }
 }
