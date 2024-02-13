@@ -35,14 +35,14 @@ public class TarefaEntity {
     private boolean finalizado;
 
     @Column(name = "id_departamento")
-    private int idDepartamento;
+    private Integer idDepartamento;
 
     @ManyToOne
     @JoinColumn(name = "id_departamento", insertable=false, updatable=false)
     private DepartamentoEntity departamento;
 
     @Column(name = "id_pessoa")
-    private int idPessoa;
+    private Integer idPessoa;
 
     @ManyToOne
     @JoinColumn(name = "id_pessoa", insertable=false, updatable=false)

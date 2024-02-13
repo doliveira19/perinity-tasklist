@@ -4,16 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateTarefaDTO {
-    private String titulo;
-    private String descricao;
-    private String prazo;
-    private int duracao;
+public class AllocatePessoaToTarefaDTO {
     private int idPessoa;
-    private int idDepartamento;
 }
