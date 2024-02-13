@@ -24,7 +24,7 @@ public class DepartamentoEntity {
     @Column(length = 100)
     private String titulo;
 
-    @OneToMany(mappedBy = "departamento")
+    @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<PessoaEntity> pessoas;
 }

@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -28,7 +28,7 @@ public class TarefaEntity {
     private String descricao;
 
     @Temporal(TemporalType.DATE)
-    private Date Prazo;
+    private LocalDate prazo;
 
     private int duracao;
 
