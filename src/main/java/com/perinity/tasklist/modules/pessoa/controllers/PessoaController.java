@@ -1,10 +1,13 @@
 package com.perinity.tasklist.modules.pessoa.controllers;
 
 import com.perinity.tasklist.modules.pessoa.dto.CreatePessoaDTO;
+import com.perinity.tasklist.modules.pessoa.dto.PessoasWithHorasGastasDTO;
+import com.perinity.tasklist.modules.pessoa.dto.PessoasWithMediaHorasDTO;
 import com.perinity.tasklist.modules.pessoa.entities.PessoaEntity;
 import com.perinity.tasklist.modules.pessoa.repositories.PessoaRepository;
 import com.perinity.tasklist.modules.pessoa.useCases.CreatePessoaUseCase;
 import com.perinity.tasklist.modules.pessoa.useCases.DeletePessoaUseCase;
+import com.perinity.tasklist.modules.pessoa.useCases.FindPessoaWithMediaHorasUseCase;
 import com.perinity.tasklist.modules.pessoa.useCases.UpdatePessoaUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,9 @@ public class PessoaController {
     private UpdatePessoaUseCase updatePessoaUseCase;
 
     @Autowired
+    private FindPessoaWithMediaHorasUseCase findPessoaWithMediaHorasUseCase;
+
+    @Autowired
     private PessoaRepository pessoaRepository;
 
     @GetMapping("/{id}")
@@ -33,7 +39,7 @@ public class PessoaController {
         return this.pessoaRepository.findById(id);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     private List<PessoaEntity> getAllPessoas() {
         return this.pessoaRepository.findAll();
     }
@@ -66,5 +72,22 @@ public class PessoaController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+
+
+
+    @GetMapping
+    private List<PessoasWithHorasGastasDTO> findPessoasWithHorasGastas() {
+        return this.pessoaRepository.findPessoasWithHorasGastas();
+    }
+
+    @GetMapping("/gastos")
+    private PessoasWithMediaHorasDTO findPessoaWithMediaHoras(
+            @RequestParam(name = "nome", required = true) String nome,
+            @RequestParam(name = "dataInicial", required = true) String dataInicial,
+            @RequestParam(name = "dataFinal", required = true) String dataFinal) {
+        return this.findPessoaWithMediaHorasUseCase.execute(nome, dataInicial, dataFinal);
+
     }
 }
